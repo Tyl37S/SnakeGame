@@ -1,15 +1,15 @@
-import pygame, sys
+import pygame, sys, random
 from pygame.math import Vector2
 
 class FRUIT:
     def __init__(self):
-        self.x = 5
-        self.y = 4
-        self.pos = pygame.math.Vector2(self.x,self.y)
+        self.x = random.randint(0,19)
+        self.y = random.randint(0,19)
+        self.pos = pygame.math.Vector2(self.x,self.y *10)
 
     def draw_fruit(self):
         fruit_rect = pygame.Rect(self.pos.x * cell_size,self.pos.y,cell_size,cell_size)
-        pygame.draw.rect(screen,(126,166,114),fruit_rect)
+        pygame.draw.rect(screen,(126,0,0),fruit_rect)
 
 
 pygame.init()
