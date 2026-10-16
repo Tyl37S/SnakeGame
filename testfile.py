@@ -4,7 +4,7 @@ import pygame
 pygame.init()
 
 # Board settings
-ROWS, COLS = 10, 10
+ROWS, COLS = 15, 15
 SQUARE_SIZE = 50  # pixels per square
 WIDTH, HEIGHT = COLS * SQUARE_SIZE, ROWS * SQUARE_SIZE
 
