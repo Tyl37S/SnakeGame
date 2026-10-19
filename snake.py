@@ -19,9 +19,9 @@ player_row, player_col = 0, 0
 
 def draw_player():
     pygame.draw.rect(
-        screen,
+        board.screen,
         PLAYER_COLOR,
-        (player_col * SQUARE_SIZE, player_row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE)
+        (player_col * board.SQUARE_SIZE, player_row * board.SQUARE_SIZE, board.SQUARE_SIZE, board.SQUARE_SIZE)
     )
 
 # Main loop
@@ -46,6 +46,6 @@ while running:
         last_move_time = current_time
 
         # Stop if the player leaves the board
-        if (player_row < 0 or player_row >= ROWS or
-                player_col < 0 or player_col >= COLS):
+        if (player_row < 0 or player_row >= board.ROWS or
+                player_col < 0 or player_col >= board.COLS):
             running = False
