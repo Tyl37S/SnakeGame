@@ -62,7 +62,6 @@ while running:
                 player_col < 0 or player_col >= COLS):
             running = False
 
-    draw_board()
     draw_player()
     pygame.display.flip()
 
