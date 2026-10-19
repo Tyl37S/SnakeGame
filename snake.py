@@ -1,6 +1,5 @@
 
 import pygame, sys, random
-import fruit
 import board
 
 pygame.init()
@@ -49,3 +48,4 @@ while running:
         if (player_row < 0 or player_row >= board.ROWS or
                 player_col < 0 or player_col >= board.COLS):
             running = False
+    

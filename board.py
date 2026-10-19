@@ -1,7 +1,4 @@
-
-import pygame, sys, random
-import fruit
-import main
+import pygame, random, sys
 
 pygame.init()
 
@@ -23,14 +20,3 @@ def draw_board():
         for col in range(COLS):
             color = LIGHT if (row + col) % 2 == 0 else DARK
             pygame.draw.rect(screen,color,(col * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
-
-
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-            
-
-
-    pygame.display.flip()
