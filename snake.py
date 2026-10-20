@@ -8,6 +8,8 @@ import fruit
 import sys
 import random
 
+pygame.mixer.init()
+sound = pygame.mixer("chew.wav")
 PLAYER_COLOR = (0, 0, 126)
 
 # Starting position
@@ -121,6 +123,8 @@ def update_player():
     # Grow when eating fruit
     if eating:
         grow_snake()
+        sound.play()
+
         fruit.fruit = fruit.FRUIT()
 
     # Remove the tail unless growing

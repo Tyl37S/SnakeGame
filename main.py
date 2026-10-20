@@ -8,6 +8,7 @@ import fruit
 import snake
 
 pygame.init()
+pygame.mixer.init()
 
 clock = pygame.time.Clock()
 running = True
