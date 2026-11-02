@@ -9,7 +9,7 @@ import sys
 import random
 
 pygame.mixer.init()
-sound = pygame.mixer("chew.wav")
+sound = pygame.mixer.Sound("chew.wav")
 PLAYER_COLOR = (0, 0, 126)
 
 # Starting position
