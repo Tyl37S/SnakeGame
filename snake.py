@@ -16,7 +16,7 @@ PLAYER_COLOR = (0, 0, 126)
 direction = (0, 1)
 player_row, player_col = 0, 0
 
-MOVEMENT_DELAY = 200
+MOVEMENT_DELAY = 170
 last_move_time = pygame.time.get_ticks()
 
 snake_body = []
@@ -60,13 +60,13 @@ def draw_player():
 def handle_key(event):
     global direction
 
-    if event.key == pygame.K_UP:
+    if event.key == pygame.K_UP and direction != (1, 0):
         direction = (-1, 0)
-    elif event.key == pygame.K_DOWN:
+    elif event.key == pygame.K_DOWN and direction != (-1, 0):
         direction = (1, 0)
-    elif event.key == pygame.K_LEFT:
+    elif event.key == pygame.K_LEFT and direction != (0, 1):
         direction = (0, -1)
-    elif event.key == pygame.K_RIGHT:
+    elif event.key == pygame.K_RIGHT and direction != (0, -1):
         direction = (0, 1)
 
 #make a function that amkes the snake grow every time it eats a fruit

@@ -10,6 +10,10 @@ import snake
 pygame.init()
 pygame.mixer.init()
 
+music_file = "background1.mp3"
+pygame.mixer.music.load(music_file)
+pygame.mixer.music.play(-1)  
+
 clock = pygame.time.Clock()
 running = True
 
@@ -27,10 +31,12 @@ while running:
     board.draw_board()
     fruit.fruit.draw_fruit()
     snake.draw_player()
+    pygame.mixer.music.play(-1)  
+
 
     pygame.display.flip()
     clock.tick(60)
-
+pygame.mixer.music.stop()
 pygame.quit()
 sys.exit()
 
