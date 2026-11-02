@@ -122,8 +122,9 @@ def update_player():
 
     # Grow when eating fruit
     if eating:
-        grow_snake()
         sound.play()
+        grow_snake()
+    
 
         fruit.fruit = fruit.FRUIT()
 
