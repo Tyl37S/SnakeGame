@@ -8,12 +8,28 @@ import fruit
 import snake
 
 pygame.init()
+pygame.init()
 pygame.mixer.init()
 
-music_file = "Background2.mp3"
+import os
+
+music_file = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    "Background2.mp3"
+)
+
+print("Mixer:", pygame.mixer.get_init())
+print("Music file exists:", os.path.exists(music_file))
+
 pygame.mixer.music.load(music_file)
-pygame.mixer.music.set_volume(1)
-  # repeat when the music ends
+pygame.mixer.music.set_volume(1.0)
+
+pygame.mixer.music.play(-1)
+print("Music playing:", pygame.mixer.music.get_busy())
+
+
+print("Background music started!")
+
 
 clock = pygame.time.Clock()
 running = True
@@ -32,9 +48,6 @@ while running:
     board.draw_board()
     fruit.fruit.draw_fruit()
     snake.draw_player()
-    pygame.mixer.music.play()
-    if not pygame.mixer.music.get_busy():
-        pygame.mixer.music.play()
 
 
     pygame.display.flip()
