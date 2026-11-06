@@ -72,13 +72,6 @@ def handle_key(event):
 #make a function that amkes the snake grow every time it eats a fruit
 
 
-    
-def snake_fruit_lingo():    #make it so the fruit cant spawn under the snake
-    while True:
-        fruit_row = random.randint(0, board.ROWS - 1)
-        fruit_col = random.randint(0, board.COLS - 1)
-        if (fruit_row, fruit_col) not in snake_body and (fruit_row, fruit_col) != (player_row, player_col):
-            return (fruit_row, fruit_col)
 
 
 
