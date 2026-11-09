@@ -10,11 +10,12 @@ class FRUIT:
             self.y = random.randint(0,14)
             self.pos = pygame.math.Vector2(self.x,self.y)
             if self.pos != (snake.player_row, snake.player_col) and self.pos not in snake.snake_body:
+                
                 break
 
 
     def draw_fruit(self):
-        while self.pos == (snake.player_row, snake.player_col):
+        while self.pos == (snake.player_row, snake.player_col) and self.pos in snake.snake_body:
             self.pos = pygame.math.Vector2(random.randint(0,14),random.randint(0,14))
         
         fruit_rect = pygame.Rect(self.pos.x * board.SQUARE_SIZE,self.pos.y * board.SQUARE_SIZE,board.SQUARE_SIZE,board.SQUARE_SIZE)
