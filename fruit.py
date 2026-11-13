@@ -1,26 +1,49 @@
-import pygame, sys, random
+
+import pygame
+import random
 import board
-import time
-import snake
+
+image = pygame.image.load("borgir.png").convert_alpha()
+image = pygame.transform.scale(image, (50, 50))
+
 
 class FRUIT:
-    def __init__(self):
-        while True:
-            self.x = random.randint(0,14)
-            self.y = random.randint(0,14)
-            self.pos = pygame.math.Vector2(self.x,self.y)
-            if self.pos != (snake.player_row, snake.player_col) and self.pos not in snake.snake_body:
-                
-                break
+    def __init__(self, snake_positions):
 
+
+        open_positions = []
+
+        for row in range(board.ROWS):
+            for col in range(board.COLS):
+
+                position = (row, col)
+
+                if position not in snake_positions:
+                    open_positions.append(position)
+
+        if open_positions:
+            self.pos = random.choice(open_positions)
+        else:
+            self.pos = None
 
     def draw_fruit(self):
-        while self.pos == (snake.player_row, snake.player_col) and self.pos in snake.snake_body:
-            self.pos = pygame.math.Vector2(random.randint(0,14),random.randint(0,14))
-        
-        fruit_rect = pygame.Rect(self.pos.x * board.SQUARE_SIZE,self.pos.y * board.SQUARE_SIZE,board.SQUARE_SIZE,board.SQUARE_SIZE)
-        pygame.draw.rect(board.screen,(126,0,0),fruit_rect)
-fruit = FRUIT()
+
+        if self.pos is None:
+            return
+
+        row, col = self.pos
+
+        fruit_rect = pygame.Rect(
+            col * board.SQUARE_SIZE,
+            row * board.SQUARE_SIZE,
+            board.SQUARE_SIZE,
+            board.SQUARE_SIZE
+        )
+
+        board.screen.blit(image, fruit_rect)
+
+
+fruit = None
 
 
             

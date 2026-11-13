@@ -7,6 +7,9 @@ import board
 import fruit
 import snake
 
+fruit.fruit = fruit.FRUIT(
+    [(snake.player_row, snake.player_col)] + snake.snake_body)
+
 pygame.init()
 pygame.init()
 pygame.mixer.init()
@@ -48,7 +51,7 @@ while running:
     board.draw_board()
     fruit.fruit.draw_fruit()
     snake.draw_player()
-
+    
 
     pygame.display.flip()
     clock.tick(60)

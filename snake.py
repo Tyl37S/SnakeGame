@@ -8,19 +8,21 @@ import fruit
 import sys
 import random
 
+growth_pending = 0
+
 pygame.mixer.init()
 sound = pygame.mixer.Sound("chew2.wav")
-PLAYER_COLOR = (0, 0, 126)
+
 
 # Starting position
 direction = (0, 1)
 player_row, player_col = 0, 0
-
 MOVEMENT_DELAY = 170
-last_move_time = pygame.time.get_ticks()
+KEY_DELAY = 0.017
 
+last_move_time = pygame.time.get_ticks()
 snake_body = []
-growth_pending = 0
+
 
 def grow_snake():
     global growth_pending
@@ -30,17 +32,26 @@ def grow_snake():
 
 def draw_player():
     # Draw the body
+    if len(snake_body) < 15:
+            PLAYER_COLOR = (0, 0, 126)
+    elif len(snake_body) >= 15 and len(snake_body) < 30:
+            PLAYER_COLOR = (134, 0, 0) 
+    elif len(snake_body) >= 30:
+            PLAYER_COLOR = (255, 215, 0)
+    elif len(snake_body) == None:
+            PLAYER_COLOR = (0, 0, 126)
+            return PLAYER_COLOR
     for row, col in snake_body:
-        pygame.draw.rect(
-            board.screen,
-            PLAYER_COLOR,
-            (
-                col * board.SQUARE_SIZE,
-                row * board.SQUARE_SIZE,
-                board.SQUARE_SIZE,
-                board.SQUARE_SIZE
+            pygame.draw.rect(
+                board.screen,
+                PLAYER_COLOR,
+                (
+                    col * board.SQUARE_SIZE,
+                    row * board.SQUARE_SIZE,
+                    board.SQUARE_SIZE,
+                    board.SQUARE_SIZE
+                )
             )
-        )
 
     # Draw the head
     pygame.draw.rect(
@@ -61,14 +72,21 @@ def handle_key(event):
     global direction
 
     if event.key == pygame.K_UP and direction != (1, 0):
-        direction = (-1, 0)
+        time.sleep(KEY_DELAY)
+        direction = (-1,0)
     elif event.key == pygame.K_DOWN and direction != (-1, 0):
+        time.sleep(KEY_DELAY)
         direction = (1, 0)
+        
     elif event.key == pygame.K_LEFT and direction != (0, 1):
+        time.sleep(KEY_DELAY)
         direction = (0, -1)
     elif event.key == pygame.K_RIGHT and direction != (0, -1):
+        time.sleep(KEY_DELAY)
         direction = (0, 1)
-
+    elif event.key == pygame.K_LEFT and pygame.K_UP:
+         time.sleep(KEY_DELAY)
+         direction = (0, -1)
 #make a function that amkes the snake grow every time it eats a fruit
 
 
@@ -93,11 +111,7 @@ def update_player():
         pygame.quit()
         sys.exit()
 
-    # Check whether the snake eats the fruit
-    eating = new_head == (
-        int(fruit.fruit.pos.y),
-        int(fruit.fruit.pos.x)
-    )
+    eating = new_head == fruit.fruit.pos
 
     # The tail moves away unless the snake is growing
     if eating or growth_pending > 0:
@@ -122,9 +136,9 @@ def update_player():
     if eating:
         sound.play()
         grow_snake()
-    
+        
 
-        fruit.fruit = fruit.FRUIT()
+        fruit.fruit = fruit.FRUIT([(player_row, player_col)] + snake_body)
 
     # Remove the tail unless growing
     if growth_pending > 0:
