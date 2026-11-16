@@ -12,13 +12,15 @@ growth_pending = 0
 
 pygame.mixer.init()
 sound = pygame.mixer.Sound("chew2.wav")
-
+face_image = pygame.image.load("smilyface.jpg").convert_alpha()
+image = pygame.transform.scale(face_image, (50, 50))
 
 # Starting position
 direction = (0, 1)
 player_row, player_col = 0, 0
 MOVEMENT_DELAY = 170
 KEY_DELAY = 0.017
+HEAD_COLOR = (126, 126, 126)
 
 last_move_time = pygame.time.get_ticks()
 snake_body = []
@@ -54,17 +56,7 @@ def draw_player():
             )
 
     # Draw the head
-    pygame.draw.rect(
-        board.screen,
-        PLAYER_COLOR,
-        (
-            player_col * board.SQUARE_SIZE,
-            player_row * board.SQUARE_SIZE,
-            board.SQUARE_SIZE,
-            board.SQUARE_SIZE
-        )
-    )
-
+    board.screen.blit(image, (player_col * board.SQUARE_SIZE, player_row * board.SQUARE_SIZE))
 
 
 
