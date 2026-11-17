@@ -6,6 +6,8 @@ import sys
 import board
 import fruit
 import snake
+import audio
+
 
 fruit.fruit = fruit.FRUIT(
     [(snake.player_row, snake.player_col)] + snake.snake_body)
@@ -14,17 +16,7 @@ pygame.init()
 pygame.init()
 pygame.mixer.init()
 
-import os
-
-music_file = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)),
-    "Background2.mp3"
-)
-
-print("Mixer:", pygame.mixer.get_init())
-print("Music file exists:", os.path.exists(music_file))
-
-pygame.mixer.music.load(music_file)
+pygame.mixer.music.load(audio.music_file)
 pygame.mixer.music.set_volume(1.0)
 
 pygame.mixer.music.play(-1)

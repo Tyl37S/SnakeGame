@@ -7,11 +7,12 @@ import board
 import fruit
 import sys
 import random
+import audio
 
 growth_pending = 0
 
 pygame.mixer.init()
-sound = pygame.mixer.Sound("chew2.wav")
+
 face_image = pygame.image.load("smilyface.jpg").convert_alpha()
 image = pygame.transform.scale(face_image, (50, 50))
 
@@ -126,7 +127,7 @@ def update_player():
 
     # Grow when eating fruit
     if eating:
-        sound.play()
+        audio.sound.play()
         grow_snake()
         
 
